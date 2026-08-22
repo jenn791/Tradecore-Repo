@@ -1,2 +1,2 @@
 # Tradecore-Repo
-Team Vanguard
+
