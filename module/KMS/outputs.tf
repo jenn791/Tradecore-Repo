@@ -59,3 +59,18 @@ output "backup_alias_arn" {
   description = "ARN of the backup vault encryption CMK alias"
   value       = aws_kms_alias.backup.arn
 }
+
+output "secrets_key_id" {
+  description = "Key ID of the Secrets Manager encryption CMK"
+  value       = aws_kms_key.secrets.key_id
+}
+
+output "secrets_key_arn" {
+  description = "ARN of the Secrets Manager encryption CMK"
+  value       = aws_kms_key.secrets.arn
+}
+
+output "secrets_alias_arn" {
+  description = "ARN of the Secrets Manager encryption CMK alias"
+  value       = aws_kms_alias.secrets.arn
+}
