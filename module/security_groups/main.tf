@@ -141,7 +141,15 @@ resource "aws_security_group" "aurora" {
     to_port         = var.aurora_port 
     protocol        = "tcp" 
     security_groups = [aws_security_group.rds_proxy.id] 
-  } 
+  }
+
+    egress {
+    description = "Return traffic within the VPC only"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [var.vpc_cidr]
+  }
  
   tags = merge(local.common_tags, { 
     Name = "tradecore-${var.environment}-aurora-sg" 
