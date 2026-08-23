@@ -10,7 +10,7 @@ locals {
 }
 
 # Backup vault - encrypted with the dedicated backup CMK from the kms module.
-# Kept single-region (af-south-1) with no cross-account/cross-region copy
+# single-region (af-south-1) with no cross-account/cross-region copy
 
 resource "aws_backup_vault" "this" {
   name        = local.vault_name
