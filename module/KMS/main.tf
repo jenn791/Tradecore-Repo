@@ -6,6 +6,7 @@ resource "aws_kms_key" "tradecore" {
   description             = "Main KMS key for ${var.environment} environment"
   deletion_window_in_days = 30
   enable_key_rotation     = true
+  multi_region            = false
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -40,6 +41,7 @@ resource "aws_kms_key" "s3" {
   description             = "S3 encryption key for ${var.environment} environment"
   deletion_window_in_days = 30
   enable_key_rotation     = true
+  multi_region            = false
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -71,6 +73,7 @@ resource "aws_kms_key" "rds" {
   description             = "RDS encryption key for ${var.environment} environment"
   deletion_window_in_days = 30
   enable_key_rotation     = true
+  multi_region            = false
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -102,6 +105,7 @@ resource "aws_kms_key" "backup" {
   description             = "Backup vault encryption key for ${var.environment} environment"
   deletion_window_in_days = 30
   enable_key_rotation     = true
+  multi_region            = false
 
   policy = jsonencode({
     Version = "2012-10-17"
