@@ -5,7 +5,8 @@ resource "aws_s3_bucket" "app_data" {
   force_destroy = false
 
   tags = {
-    Name = "tradecore-${var.environment}-data"
+    Name   = "tradecore-${var.environment}-data"
+    Backup = "true"
   }
 }
 
