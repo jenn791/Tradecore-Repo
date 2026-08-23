@@ -1,21 +1,5 @@
-# Provider
-terraform {
-  required_version = ">= 1.3.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.aws_region
-}
-
 # CloudWatch Log Group
-resource "aws_cloudwatch_log_group" "this" {
+resource "aws_cloudwatch_log_group" "tradecore-cloudwatch" {
   name              = var.log_group_name
   retention_in_days = var.log_retention_days
   kms_key_id        = var.kms_key_id != "" ? var.kms_key_id : null
@@ -39,7 +23,7 @@ resource "aws_sns_topic_subscription" "email" {
 }
 
 # CloudWatch Metric Alarm(s)
-resource "aws_cloudwatch_metric_alarm" "this" {
+resource "aws_cloudwatch_metric_alarm" "tardecore-alarm" {
   for_each = var.alarms
 
   alarm_name          = "${var.project_name}-${each.key}"
@@ -62,7 +46,7 @@ resource "aws_cloudwatch_metric_alarm" "this" {
 }
 
 # CloudWatch Log Metric Filter (optional)
-resource "aws_cloudwatch_log_metric_filter" "this" {
+resource "aws_cloudwatch_log_metric_filter" "tradecore-filter" {
   for_each = var.log_metric_filters
 
   name           = each.key
@@ -78,7 +62,7 @@ resource "aws_cloudwatch_log_metric_filter" "this" {
 }
 
 # CloudWatch Dashboard
-resource "aws_cloudwatch_dashboard" "this" {
+resource "aws_cloudwatch_dashboard" "tradecore-dashboard" {
   count          = var.create_dashboard ? 1 : 0
   dashboard_name = "${var.project_name}-dashboard"
 
