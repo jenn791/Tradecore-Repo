@@ -79,7 +79,8 @@ resource "aws_s3_bucket" "access_logs" {
   force_destroy = false
 
   tags = {
-    Name = "tradecore-${var.environment}-logs"
+    Name   = "tradecore-${var.environment}-logs"
+    Backup = "true"
   }
 }
 
